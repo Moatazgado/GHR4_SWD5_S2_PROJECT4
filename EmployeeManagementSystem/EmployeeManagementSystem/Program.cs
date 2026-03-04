@@ -43,7 +43,9 @@ internal class Program
                     break;
 
                 case "2":
-                  //implement display info logic here
+                    manager.ViewAllEmployees();
+
+                    break;
                  
                 case "3":
                     //implement update logic here
