@@ -8,6 +8,9 @@ namespace EmployeeManagementSystem
 {
     public enum JobType
     {
-
+        SoftwareEngineer,
+        ProductManager,
+        Designer,
+        DataScientist
     }
 }
