@@ -46,17 +46,23 @@ internal class Program
                    //
                  
                 case "3":
-                    //
+                    Console.Write("Enter ID of employee to update: ");
+                    int uId = int.Parse(Console.ReadLine());
+                    Console.Write("Enter new Name: ");
+                    string uName = Console.ReadLine();
+                    Console.Write("Enter new Description: ");
+                    string uDesc = Console.ReadLine();
+                    Console.Write("Enter new Salary: ");
+                    int uSalary = int.Parse(Console.ReadLine());
+                    Console.Write("Enter new Job Type (0:SE,1:PM,2:Des,3:DS): ");
+                    int uType = int.Parse(Console.ReadLine());
+
+                    manager.UpdateEmployee(uId, uName, uDesc, (JobType)uType, uSalary);
+                    Console.WriteLine("Employee updated successfully");
                     
+                    break;
 
                 case "4":
-                    //
-                    
-
-                case "5":
-                   //
-
-                case "6":
                     Console.Write("Search by (id/name/salary): ");
                     string sBy = Console.ReadLine();
 
@@ -73,7 +79,22 @@ internal class Program
 
                     break;
 
-                case "7":
+
+                case "5":
+                    Console.Write("Enter Title ID (0:SE, 1:PM, 2:Des, 3:DS): ");
+                    int fId = int.Parse(Console.ReadLine());
+
+                    var filtered = manager.FilterByTitle((JobType)fId);
+
+                    if (filtered.Count == 0)
+                        Console.WriteLine("No records found.");
+                    else
+                        foreach (var e in filtered)
+                            Console.WriteLine(e);
+
+                    break;
+
+                case "6":
                     Console.Write("Sort by (name/salary): ");
                     string sortBy = Console.ReadLine();
 
@@ -87,19 +108,11 @@ internal class Program
 
                     break;
 
+                case "7":
+                    //
+
                 case "8":
-                    Console.Write("Enter Title ID (0:SE, 1:PM, 2:Des, 3:DS): ");
-                    int fId = int.Parse(Console.ReadLine());
-
-                    var filtered = manager.FilterByTitle((JobType)fId);
-
-                    if (filtered.Count == 0)
-                        Console.WriteLine("No records found.");
-                    else
-                        foreach (var e in filtered)
-                            Console.WriteLine(e);
-
-                    break;
+                    //
 
                 case "9":
                     running = false;

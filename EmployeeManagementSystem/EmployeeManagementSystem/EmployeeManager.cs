@@ -33,7 +33,7 @@ namespace EmployeeManagementSystem
                 emp.Description = desc;
                 emp.JobType = type;
                 emp.Salary = salary;
-                Console.WriteLine("Employee Updated Successfully .");
+                
             }
             else
             {
