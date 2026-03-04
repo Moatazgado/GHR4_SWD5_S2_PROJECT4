@@ -15,8 +15,8 @@ internal class Program
         while (running)
         {
             Console.WriteLine("\n-----------------------------------");
-            Console.WriteLine("1- Add | 2- Display Info | 3- Update | 4- Remove | 5- Clear");
-            Console.WriteLine("6- Count | 7- Search | 8- Display All | 9- Sort | 10- Filter | 11- Exit");
+            Console.WriteLine("1- Add | 2- Display All | 3- Update | 4- Search | 5- Filter");
+            Console.WriteLine("6- Sort | 7- Count Employees  | 8- Clear  | 9- Exit");
             Console.Write("Enter Your Request: ");
 
             string choice = Console.ReadLine();
@@ -43,60 +43,69 @@ internal class Program
                     break;
 
                 case "2":
-                    manager.ViewAllEmployees();
-
-                    break;
+                   //
                  
                 case "3":
-                    //implement update logic here
-                    break;
+                    //
+                    
 
                 case "4":
-                    //implement remove logic here
-                    break;
+                    //
+                    
 
                 case "5":
-                    manager.Employees.Clear();
-                    Console.WriteLine("Cleared.");
-                    break;
+                   //
 
                 case "6":
-                    Console.WriteLine($"Total: {manager.Employees.Count}");
+                    Console.Write("Search by (id/name/salary): ");
+                    string sBy = Console.ReadLine();
+
+                    Console.Write("Enter value: ");
+                    string sVal = Console.ReadLine();
+
+                    var searchResults = manager.SearchBy(sBy, sVal);
+
+                    if (searchResults.Count == 0)
+                        Console.WriteLine("No records found.");
+                    else
+                        foreach (var e in searchResults)
+                            Console.WriteLine(e);
+
                     break;
 
                 case "7":
-                    Console.Write("Search by (id/name/salary): ");
-                    string sBy = Console.ReadLine();
-                    Console.Write("Enter value: ");
-                    string sVal = Console.ReadLine();
-                    DisplayList(manager.SearchBy(sBy, sVal));
+                    Console.Write("Sort by (name/salary): ");
+                    string sortBy = Console.ReadLine();
+
+                    var sorted = manager.GetSortedList(sortBy);
+
+                    if (sorted.Count == 0)
+                        Console.WriteLine("No records found.");
+                    else
+                        foreach (var e in sorted)
+                            Console.WriteLine(e);
+
                     break;
 
                 case "8":
-                    DisplayList(manager.Employees);
+                    Console.Write("Enter Title ID (0:SE, 1:PM, 2:Des, 3:DS): ");
+                    int fId = int.Parse(Console.ReadLine());
+
+                    var filtered = manager.FilterByTitle((JobType)fId);
+
+                    if (filtered.Count == 0)
+                        Console.WriteLine("No records found.");
+                    else
+                        foreach (var e in filtered)
+                            Console.WriteLine(e);
+
                     break;
 
                 case "9":
-                    Console.Write("Sort by (name/salary): ");
-                    DisplayList(manager.GetSortedList(Console.ReadLine()));
-                    break;
-
-                case "10":
-                    Console.Write("Enter Title ID (0:SE, 1:PM, 2:Des, 3:DS): ");
-                    int fId = int.Parse(Console.ReadLine());
-                    DisplayList(manager.FilterByTitle((JobType)fId));
-                    break;
-
-                case "11":
                     running = false;
                     break;
             }
 
-        }
-        static void DisplayList(List<Employee> list)
-        {
-            if (list.Count == 0) Console.WriteLine("No records found.");
-            else list.ForEach(e => Console.WriteLine(e));
         }
 
     }

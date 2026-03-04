@@ -8,7 +8,7 @@ namespace EmployeeManagementSystem
 {
     public class EmployeeManager
     {
-        public List<Employee> Employees;
+        private List<Employee> Employees;
         public EmployeeManager()
         {
             Employees = new List<Employee>();
@@ -20,14 +20,10 @@ namespace EmployeeManagementSystem
                Employees.Add(emp);
         }
 
-        public void ViewAllEmployees()
-        {
-            Console.WriteLine("Employees list ");
-
-            foreach (var emp in Employees) {
-                Console.WriteLine(emp);
-            }
-        }
+        //public List<Employee> GetAllEmployees()
+        //{
+        //    //
+        //}
         public void UpdateEmployee(int id, string name, string desc, JobType type, int salary)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
@@ -71,5 +67,17 @@ namespace EmployeeManagementSystem
             };
 
         }
+
+        //public int CountEmployees()
+        //{
+        //    //
+
+        //}
+
+        //public void Clear()
+        //{
+        //    //
+
+        //}
     }
 }
